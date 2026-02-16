@@ -1,0 +1,36 @@
+.panel {
+  width: 420px;
+  min-width: 340px;
+  max-width: 480px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #30363d;
+  background: #0d1117;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.scrollArea {
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+.scrollArea::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollArea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollArea::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 3px;
+}
+
+.scrollArea::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}

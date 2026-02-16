@@ -1,0 +1,74 @@
+.panel {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #0d1117;
+}
+
+.canvasContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.statsOverlay {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  z-index: 10;
+  padding: 10px 16px;
+  background: rgba(13, 17, 23, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  text-align: right;
+}
+
+.modelName {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #c9d1d9;
+}
+
+.paramCount {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #8b949e;
+  margin-top: 2px;
+}
+
+.paramCount strong {
+  color: #c9d1d9;
+}
+
+.miniMapOverlay {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+  padding: 8px;
+  background: rgba(13, 17, 23, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid #30363d;
+  border-radius: 8px;
+}
+
+.controls {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 20px;
+  padding: 6px 16px;
+  background: rgba(13, 17, 23, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #484f58;
+}

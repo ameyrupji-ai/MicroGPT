@@ -1,0 +1,83 @@
+.wrapper {
+  padding: 6px 20px;
+  border-bottom: 1px solid #30363d;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  background: #161b22;
+  color: #8b949e;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s;
+}
+
+.toggle:hover {
+  border-color: #484f58;
+}
+
+.caret {
+  font-size: 8px;
+  margin-left: auto;
+  transition: transform 0.2s;
+}
+
+.caretOpen {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 48px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  overflow: hidden;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  color: #c9d1d9;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.item:hover {
+  background: #21262d;
+}
+
+.active {
+  background: rgba(56, 139, 253, 0.1);
+  color: #388bfd;
+  font-weight: 600;
+}
+
+.num {
+  color: #484f58;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  min-width: 20px;
+}
