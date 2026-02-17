@@ -59,6 +59,14 @@ export const CHAPTERS = [
         camera: { position: [0, 28, 14], lookAt: [0, 27, 0] },
         highlight: ['input'],
         dim: 'others',
+        cellHighlights: [
+          { blockId: 'input', type: 'cell', row: 0, col: 0, color: '#ef4444' },
+          { blockId: 'input', type: 'cell', row: 0, col: 1, color: '#ef4444' },
+          { blockId: 'input', type: 'cell', row: 0, col: 2, color: '#ef4444' },
+          { blockId: 'input', type: 'cell', row: 0, col: 3, color: '#ef4444' },
+          { blockId: 'input', type: 'cell', row: 0, col: 4, color: '#ef4444' },
+          { blockId: 'input', type: 'cell', row: 0, col: 5, color: '#ef4444' },
+        ],
         content: [
           { type: 'h2', text: 'Character-Level Tokenization' },
           { type: 'p', text: 'micro-gpt uses a character-level tokenizer. Every unique character in the names dataset becomes a token. With 26 lowercase letters plus a special BOS (Beginning of Sequence) token, we get:' },
@@ -74,6 +82,14 @@ export const CHAPTERS = [
         camera: { position: [0, 28, 14], lookAt: [0, 27, 0] },
         highlight: ['input'],
         dim: 'others',
+        cellHighlights: [
+          { blockId: 'input', type: 'cell', row: 0, col: 0, color: '#3fb950' },
+          { blockId: 'input', type: 'cell', row: 0, col: 1, color: '#ef4444' },
+          { blockId: 'input', type: 'cell', row: 0, col: 2, color: '#ef4444' },
+          { blockId: 'input', type: 'cell', row: 0, col: 3, color: '#ef4444' },
+          { blockId: 'input', type: 'cell', row: 0, col: 4, color: '#ef4444' },
+          { blockId: 'input', type: 'cell', row: 0, col: 5, color: '#3fb950' },
+        ],
         content: [
           { type: 'p', text: 'Each training example wraps a name with BOS tokens on both sides. The name "emma" becomes:' },
           { type: 'code', text: 'tokens = [BOS] + [uchars.index(ch) for ch in "emma"] + [BOS]\n# = [26, 4, 12, 12, 0, 26]' },
@@ -93,6 +109,11 @@ export const CHAPTERS = [
         camera: { position: [0, 24, 20], lookAt: [0, 22, 0] },
         highlight: ['wte', 'wpe'],
         dim: 'others',
+        cellHighlights: [
+          { blockId: 'input', type: 'cell', row: 0, col: 0, color: '#ef4444' },
+          { blockId: 'wte', type: 'row', row: 26, color: '#3fb950' },
+          { blockId: 'wpe', type: 'row', row: 0, color: '#3fb950' },
+        ],
         content: [
           { type: 'h2', text: 'Token + Position Embeddings' },
           { type: 'p', text: 'The model has two embedding lookup tables:' },
@@ -111,6 +132,11 @@ export const CHAPTERS = [
         camera: { position: [0, 20, 16], lookAt: [0, 18, 0] },
         highlight: ['wte', 'wpe', 'emb_add', 'rmsnorm_pre'],
         dim: 'others',
+        cellHighlights: [
+          { blockId: 'wte', type: 'row', row: 26, color: '#3fb950' },
+          { blockId: 'wpe', type: 'row', row: 0, color: '#3fb950' },
+          { blockId: 'rmsnorm_pre', type: 'row', row: 0, color: '#d29922' },
+        ],
         content: [
           { type: 'p', text: 'For each token, we look up one row from each table and add them element-wise:' },
           { type: 'code', text: "tok_emb = state_dict['wte'][token_id]  # row from wte\npos_emb = state_dict['wpe'][pos_id]    # row from wpe\nx = [t + p for t, p in zip(tok_emb, pos_emb)]" },
@@ -156,6 +182,12 @@ export const CHAPTERS = [
         camera: { position: [0, 13, 24], lookAt: [0, 11, 0] },
         highlight: ['rmsnorm_attn', 'attn_wq', 'attn_wk', 'attn_wv'],
         dim: 'others',
+        cellHighlights: [
+          { blockId: 'rmsnorm_attn', type: 'row', row: 0, color: '#ef4444' },
+          { blockId: 'attn_wq', type: 'col', col: 0, color: '#3fb950' },
+          { blockId: 'attn_wk', type: 'col', col: 0, color: '#3fb950' },
+          { blockId: 'attn_wv', type: 'col', col: 0, color: '#3fb950' },
+        ],
         content: [
           { type: 'h2', text: 'Q, K, V Projections' },
           { type: 'p', text: 'After RMSNorm, the 16-dim input vector is projected through three weight matrices to produce Query, Key, and Value vectors:' },
@@ -171,6 +203,12 @@ export const CHAPTERS = [
         camera: { position: [0, 10, 18], lookAt: [0, 9, 0] },
         highlight: ['multihead_attn'],
         dim: 'others',
+        cellHighlights: [
+          { blockId: 'multihead_attn', type: 'row', row: 0, color: '#3fb950' },
+          { blockId: 'multihead_attn', type: 'row', row: 1, color: '#8b5cf6' },
+          { blockId: 'multihead_attn', type: 'row', row: 2, color: '#06b6d4' },
+          { blockId: 'multihead_attn', type: 'row', row: 3, color: '#f59e0b' },
+        ],
         content: [
           { type: 'p', text: 'The 16-dim Q, K, V vectors are split into 4 heads of 4 dimensions each. For each head independently:' },
           { type: 'code', text: 'for h in range(n_head):       # 4 heads\n    hs = h * head_dim         # 0, 4, 8, 12\n    q_h = q[hs:hs+head_dim]   # 4-dim slice\n    # Attention scores:\n    score = dot(q_h, k_h) / sqrt(head_dim)\n    weights = softmax(scores)\n    output = weighted_sum(weights, v_h)' },
@@ -201,6 +239,9 @@ export const CHAPTERS = [
         camera: { position: [0, 5, 16], lookAt: [0, 4.5, 0] },
         highlight: ['attn_wo', 'attn_residual'],
         dim: 'others',
+        cellHighlights: [
+          { blockId: 'attn_wo', type: 'row', row: 0, color: '#3fb950' },
+        ],
         content: [
           { type: 'h2', text: 'Output Projection + Residual' },
           { type: 'p', text: 'The 4 head outputs (4 dims each) are concatenated back to 16 dims and projected through Wo:' },
@@ -226,6 +267,11 @@ export const CHAPTERS = [
         camera: { position: [0, -1, 24], lookAt: [0, -3, 0] },
         highlight: ['rmsnorm_mlp', 'mlp_fc1', 'mlp_relu', 'mlp_fc2'],
         dim: 'others',
+        cellHighlights: [
+          { blockId: 'rmsnorm_mlp', type: 'row', row: 0, color: '#ef4444' },
+          { blockId: 'mlp_fc1', type: 'row', row: 0, color: '#3fb950' },
+          { blockId: 'mlp_fc2', type: 'col', col: 0, color: '#3fb950' },
+        ],
         content: [
           { type: 'h2', text: 'Feed-Forward MLP Block' },
           { type: 'p', text: 'After attention, the data passes through a 2-layer MLP with a 4\u00d7 expansion:' },
@@ -285,6 +331,11 @@ export const CHAPTERS = [
         camera: { position: [0, -13, 18], lookAt: [0, -14, 0] },
         highlight: ['lm_head', 'logits', 'softmax'],
         dim: 'others',
+        cellHighlights: [
+          { blockId: 'lm_head', type: 'row', row: 4, color: '#3fb950' },
+          { blockId: 'logits', type: 'cell', row: 0, col: 4, color: '#f78166' },
+          { blockId: 'softmax', type: 'cell', row: 0, col: 4, color: '#f78166' },
+        ],
         content: [
           { type: 'h2', text: 'Language Model Head' },
           { type: 'p', text: 'The final 16-dim vector from the transformer block is projected to vocabulary size (27) through lm_head:' },

@@ -140,6 +140,11 @@ export class BlockRenderer {
     return this.groups[id] || null;
   }
 
+  // Get the block definition from ARCH_BLOCKS
+  getBlockDef(id) {
+    return ARCH_BLOCKS.find(b => b.id === id) || null;
+  }
+
   // Get the world-space bounding info for a block (for arrows)
   getBlockBounds(id) {
     const block = ARCH_BLOCKS.find(b => b.id === id);
